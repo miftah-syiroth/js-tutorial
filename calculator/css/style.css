@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+/* css clear */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* atur fontsize, fontfamily dan warna text */
+html {
+    font-size: 16px;
+    font-family: "Roboto Mono", monospace;
+    color: #000;
+}
+/* 1vw means 1% or view width. Misal 100 artinya 100% dari view width
+    ketika saya set 50 untuk vw dan vh, background ternyata tidak mengikuti ukuran tersebut. tidak tahu kenapa.
+    place-content is shorthand dari align dan justify center. digunakan pada grid dan flexboz
+*/
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(70, 130, 180, 1) 0%,
+        rgba(238, 238, 238, 1) 50%,
+        rgba(255, 165, 0, 1) 100%
+    );
+    display: grid;
+    place-content: center;
+}
+
+/* 
+    dari body kita buat size 90%. posisi di tengah karena body display grid dan place content center.
+    display grid artinya menjadi sebuah kolom dan sifatnya mirip blok. jika sampai sini maka jadi 1 kolom ke bawah. dan width element child menjadi full atau block
+    gap membuat jarak antar element. berarti dari header hingga semua button.
+    maksud dari grid-template-areas adalah bahwa lebar header atau display adalah 4x dari lebar clearEntry/clear/delete/divide
+*/
+.container {
+    width: 90vw;
+    border: 2px solid;
+    max-width: 500px;
+    background-color: #cecece;
+    display: grid;
+    gap: 1px;
+    grid-template-areas:
+        "header header header header"
+        "display display display display";
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: 20px minmax(120px, auto) repeat(5, minmax(0, 70px));
+}
+
+.container:focus-within {
+    background-color: rgb(255, 255, 255, 0.5);
+}
+
+.header {
+    grid-area: header;
+    padding: 0.25rem 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.display {
+    grid-area: display;
+}
